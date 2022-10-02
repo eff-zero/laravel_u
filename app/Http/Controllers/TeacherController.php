@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Teacher;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
+use Illuminate\Support\Facades\Session;
 
 class TeacherController extends Controller
 {
@@ -26,7 +27,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('teacher.index');   
+        $teachers = Teacher::orderBy('id', 'desc')->get();
+        return view('teacher.index', compact('teachers'));
     }
 
     /**
@@ -92,6 +94,8 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        $teacher->delete();
+        Session::flash('message', 'Registro Eliminado');
+        return redirect()->route('teacher.index');
     }
 }

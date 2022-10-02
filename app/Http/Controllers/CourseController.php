@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use Illuminate\Support\Facades\Session;
 
 class CourseController extends Controller
 {
@@ -26,7 +27,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('course.index');
+        $courses = Course::with('teacher')->orderBy('id', 'desc')->get();
+        return view('course.index', compact('courses'));
     }
 
     /**
@@ -92,6 +94,8 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        Session::flash('message', 'Registro Eliminado');
+        return redirect()->route('course.index');
     }
 }

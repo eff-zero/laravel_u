@@ -28,29 +28,29 @@ class DatabaseSeeder extends Seeder
         \App\Models\Course::create([
             'teacher_id' => 1,
             'name' => 'Circuitos II',
-            'hours' => 200,
-            'level' => 2
+            'hours' => 260,
+            'level' => 3
         ]);
 
         \App\Models\Course::create([
             'teacher_id' => 2,
             'name' => 'Programacion I',
-            'hours' => 200,
+            'hours' => 240,
             'level' => 2
         ]);
 
         \App\Models\Course::create([
             'teacher_id' => 2,
             'name' => 'Programacion II',
-            'hours' => 200,
-            'level' => 2
+            'hours' => 240,
+            'level' => 3
         ]);
 
         \App\Models\Course::create([
             'teacher_id' => 3,
             'name' => 'Fisica III',
-            'hours' => 200,
-            'level' => 5
+            'hours' => 240,
+            'level' => 3
         ]);
 
 
