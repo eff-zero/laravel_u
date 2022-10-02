@@ -16,7 +16,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body style="font-family: 'Courier New', Courier, monospace; font-size: 16px">
+<body style="font-family: 'Lato', sans-serif; font-size: 16px">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

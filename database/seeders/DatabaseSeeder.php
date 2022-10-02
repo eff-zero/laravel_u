@@ -16,28 +16,43 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(1)->create(['email' => 'test@example.com']);
         \App\Models\Teacher::factory(3)->create();
-        \App\Models\Student::factory(75)->create();
+        \App\Models\Student::factory(60)->create();
 
-        \App\Models\Course::factory()->create([
-            [
-                'teacher_id' => 1,
-                'name' => 'Circuitos I',
-                'hours' => 200,
-                'level' => 2
-            ],
-            [
-                'teacher_id' => 2,
-                'name' => 'Programacion I',
-                'hours' => 200,
-                'level' => 2
-            ],
-            [
-                'teacher_id' => 4,
-                'name' => 'Fisica III',
-                'hours' => 200,
-                'level' => 5
-            ]
+        \App\Models\Course::create([
+            'teacher_id' => 1,
+            'name' => 'Circuitos I',
+            'hours' => 200,
+            'level' => 2
         ]);
+
+        \App\Models\Course::create([
+            'teacher_id' => 1,
+            'name' => 'Circuitos II',
+            'hours' => 200,
+            'level' => 2
+        ]);
+
+        \App\Models\Course::create([
+            'teacher_id' => 2,
+            'name' => 'Programacion I',
+            'hours' => 200,
+            'level' => 2
+        ]);
+
+        \App\Models\Course::create([
+            'teacher_id' => 2,
+            'name' => 'Programacion II',
+            'hours' => 200,
+            'level' => 2
+        ]);
+
+        \App\Models\Course::create([
+            'teacher_id' => 3,
+            'name' => 'Fisica III',
+            'hours' => 200,
+            'level' => 5
+        ]);
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
