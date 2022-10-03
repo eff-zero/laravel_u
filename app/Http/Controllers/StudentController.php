@@ -38,7 +38,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('student.create');
     }
 
     /**
@@ -49,7 +49,9 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        //
+        Student::create($request->all());
+        Session::flash('message', 'Registro creado con exito');
+        return redirect()->route('student.index');
     }
 
     /**
@@ -71,7 +73,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('student.edit', compact('student'));
     }
 
     /**
@@ -83,7 +85,9 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+        $student->update($request->all());
+        Session::flash('message', 'Registro actualizado');
+        return redirect()->route('student.index');
     }
 
     /**
