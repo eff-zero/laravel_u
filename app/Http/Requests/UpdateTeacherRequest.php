@@ -27,7 +27,7 @@ class UpdateTeacherRequest extends FormRequest
             "firstname" => 'required|string',
             "lastname" => 'required|string',
             "email" => 'required|email',
-            "phone" => 'required|numeric|min:10',
+            "phone" => 'required|numeric|digits:10',
             "department" => 'required|string'
         ];
     }

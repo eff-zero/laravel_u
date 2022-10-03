@@ -33,7 +33,7 @@
 
                 <div class="mb-3">
                     <label for="phone">Celular</label>
-                    <input type="text" class="form-control" name="phone" id="phone" value={{ old('phone') }}>
+                    <input type="number" class="form-control" name="phone" id="phone" minlength="10" value={{ old('phone') }}>
                     @error('phone')
                         <p class="text-danger"> {{ $message }} </p>
                     @enderror
@@ -42,7 +42,6 @@
                 <div class="mb-3">
                     <label for="department">Departamento</label>
                     <input type="text" class="form-control" name="department" id="department" value={{ old('department') }}>
-                    value={{ old('department') }}>
                     @error('department')
                         <p class="text-danger"> {{ $message }} </p>
                     @enderror

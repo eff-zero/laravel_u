@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Session;
+use Psy\Readline\Hoa\Console;
 
 class CourseController extends Controller
 {
@@ -27,8 +29,13 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('teacher')->orderBy('id', 'desc')->get();
-        return view('course.index', compact('courses'));
+        if (Teacher::first()) {
+            $courses = Course::with('teacher')->orderBy('id', 'desc')->get();
+            return view('course.index', compact('courses'));
+        }
+
+        Session::flash('message', 'Por favor crear un profesor para asignar cursos');
+        return redirect()->route('teacher.index');
     }
 
     /**
@@ -38,7 +45,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $teachers  = Teacher::get(['id', 'firstname', 'lastname']);
+        return view('course.create', compact('teachers'));
     }
 
     /**
@@ -49,7 +57,8 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        //
+        Course::create($request->all());
+        return redirect()->route('course.index');
     }
 
     /**
@@ -71,7 +80,8 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        $teachers  = Teacher::get(['id', 'firstname', 'lastname']);
+        return view('course.edit', compact('teachers', 'course'));
     }
 
     /**
@@ -83,7 +93,9 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        $course->update($request->all());
+        Session::flash('message', 'Registro actualizado');
+        return redirect()->route('course.index');
     }
 
     /**

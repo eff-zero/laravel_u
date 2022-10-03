@@ -13,7 +13,7 @@ class StoreCourseRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string',
+            'hours' => 'required|numeric',
+            'level' => 'required|numeric'
         ];
     }
 }
