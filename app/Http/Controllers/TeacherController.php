@@ -38,7 +38,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('teacher.create');
     }
 
     /**
@@ -49,7 +49,9 @@ class TeacherController extends Controller
      */
     public function store(StoreTeacherRequest $request)
     {
-        //
+        Teacher::create($request->all());
+        Session::flash('message', 'Registro creado con exito');
+        return redirect()->route('teacher.index');
     }
 
     /**
@@ -71,7 +73,7 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        return view('teacher.edit', compact('teacher'));
     }
 
     /**
@@ -83,7 +85,9 @@ class TeacherController extends Controller
      */
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
-        //
+        $teacher->update($request->all());
+        Session::flash('message', 'Registro actualizado');
+        return redirect()->route('teacher.index');
     }
 
     /**
